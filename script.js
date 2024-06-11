@@ -1,4 +1,4 @@
-const btns = document.querySelectorAll(".btn");
+const btns = document.querySelectorAll(".queston");
 const answers = document.querySelectorAll(".answer");
 const pluses = document.querySelectorAll(".plus");
 for (let index = 0; index < btns.length; index++) {
@@ -15,3 +15,13 @@ for (let index = 0; index < btns.length; index++) {
         }
     });
 }
+
+const menu_btn = document.getElementById("menu_btn");
+const bubble_menu = document.getElementById("bubble_menu");
+menu_btn.addEventListener("click", () => {
+    if (!bubble_menu.classList.contains("active_nav")) {
+        bubble_menu.classList.add("active_nav");
+    } else {
+        bubble_menu.classList.remove("active_nav");
+    }
+});

@@ -70,12 +70,6 @@ p {
     color: var(--dirty-color);
 }
 
-.unactive_nav {
-    display: none;
-    transform: translateX(-100px);
-    transition: all 1s;
-}
-
 .unactive_answer {
     display: block;
     overflow: hidden;
@@ -86,6 +80,47 @@ p {
 .active_answer {
     max-height: 35vh;
     transition: max-height 2s;
+}
+
+.bubble_menu {
+    background-color: var(--bright-color);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    margin-top: 10vh;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: hidden;
+    .links {
+        width: 100%;
+        flex-direction: column;
+        .link {
+            margin-bottom: 3vh;
+            text-align: center;
+        }
+        a {
+            color: var(--dark-color);
+            font-size: var(--large-font);
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    }
+    button {
+        width: 60%;
+    }
+}
+
+.unactive_nav {
+    max-height: 0;
+    transition: max-height 1s;
+}
+
+.active_nav {
+    max-height: 100vh;
+    transition: max-height 1s;
 }
 
 .plus {
@@ -432,6 +467,91 @@ form {
     margin-left: 2%;
 }
 
+footer {
+    background-color: var(--dark-color);
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+footer .container {
+    width:80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 12vh;
+    padding-bottom: 10vh;
+    a {
+        color: var(--bright-color);
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+    .logo h5{
+        color: var(--bright-color);
+    }
+    nav {
+        display: flex;
+        flex-direction: column;
+        width: 75%;
+        justify-content: space-between;
+        .links, .adresses {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5vh;
+            min-width: fit-content;
+            .link {
+                padding-left: 3vw;
+                padding-right: 3vh;
+            }
+        }
+        button {
+            display: none;
+        }
+        .adresses {
+            width: 100%;
+        }
+        .adress {
+            display: flex;
+            height: 2rem;
+            text-wrap: nowrap;
+            img {
+                height: 100%;
+                margin-right: 1vw;
+            }
+        }
+    }
+    form {
+        border: 1px solid #BEC0C71f;
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        margin-top: 10vh;
+        margin-bottom: 5vh;
+        h4{
+            margin: 0;
+            margin-right: 2vw;
+        }
+    }
+    .low {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        p {
+            min-width: 30%;
+        }
+        p:nth-child(1) {
+            text-align: left;
+        }
+        p:nth-child(2) {
+            text-align: center;
+        }
+        p:nth-child(3) {
+            text-align: right;
+        }
+    }
+}
+
 @media (max-width:1000px) {
     .container {
         width: 90%;
@@ -469,9 +589,15 @@ form {
             font-size: 18px;
         }
     }
+
+    footer .container {
+        nav {
+            width: 100%;
+        }
+    }
 }
 
-@media (max-width:812px) {
+@media (max-width:850px) {
     #home form {
         display:none;
     }
@@ -503,6 +629,22 @@ form {
 
     #pricing span {
         flex-direction: column;
+
+    }
+
+    footer .container form {
+        flex-direction: column;
+        h4 {
+            text-align: center;
+            font-size: 32px;
+        }
+        label {
+            margin-top: 4vh;
+            margin-bottom: 4vh;
+            button {
+                width: 40%;
+            }
+        }
     }
 }
 
@@ -522,11 +664,70 @@ form {
         }
     }
 
+    header {
+        position: fixed;
+        background-color: var(--bright-color);
+        z-index: 20;
+    }
+
     #about .questons {
         display: flex;
         flex-direction: column;
     }
 
+    #about .container {
+        width: 100%;
+        margin: 0;
+        .hint {
+            flex-direction: column;
+            text-align: center;
+            justify-content: center;
+            padding: 0;
+            .left {
+                width: 90%;
+                margin-bottom: 2vh;
+            }
+            button {
+                width: 80%;
+            }
+        }
+    }
+
+    footer .container {
+        form {
+            display:none;
+        }
+        nav {
+            .logo h5 {
+                font-size: 42px;
+            }
+            .links, .adresses {
+                flex-direction: column;
+                font-size: var(--large-font);
+                width: 100%;
+                .link, .adress {
+                    margin-bottom:3vh;
+                }
+            }
+            .adresses {
+                flex-direction: column-reverse;
+            }
+        }
+        .low {
+            flex-direction: column;
+            p:nth-child(n) {
+                margin-bottom: 1vh;
+                text-align: center;
+                color: var(--bright-color);
+            }
+        }
+        #appeared {
+            display: block;
+            border: 0;
+            width: 50%;
+            max-width: none;
+        }
+    }
 }
 
 @media (max-width:500px) {
@@ -542,8 +743,12 @@ form {
     #home .text{
         div {
             flex-direction: column;
+            width: 80%;
             * {
+                max-width: none;
                 margin-bottom: 3vh;
+                margin-right: 0;
+                width: 90%;
             }
         }
     }
@@ -574,6 +779,34 @@ form {
 
     #home .img2 {
         border-radius: 10vw;
+    }
+
+    #pricing .reviews {
+        grid-template-columns: 1fr;
+    }
+
+    .reviews .review:nth-child(3), .review:nth-child(6){
+        display: block;
+    }
+
+    
+    #pricing span h3{
+        font-size: 36px;
+        text-align: center;
+    }
+
+    #about {
+        padding: 0;
+        .container {
+            padding: 2vh;
+        }
+    }
+
+    footer {
+        border-radius: 5vh;
+        width: 98vw;
+        margin: 1vw;
+        overflow: hidden;
     }
 }
 
